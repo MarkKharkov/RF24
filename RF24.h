@@ -21,7 +21,7 @@
 * Implementation for STM32 Arduino, using for output parameters and
 * debug info in other methods of this class
 */
-void printf_P (const char *format, ...);   
+void printf_P (const char *format, ...);
 
 /**
  * Power Amplifier level.
@@ -70,6 +70,16 @@ protected:
    *  may want to extend this class.
    */
   /**@{*/
+
+  /**
+  * SPI Class for interact with SPI bus
+  */
+  SPIClass &SPIbus;
+
+  /**
+  * Setter for SPI bus class
+  */
+  void set_spi(SPIClass &uSPI);
 
   /**
    * Set chip select pin
@@ -241,7 +251,7 @@ public:
    * @param _cepin The pin attached to Chip Enable on the RF module
    * @param _cspin The pin attached to Chip Select
    */
-  RF24(uint8_t _cepin, uint8_t _cspin);
+  RF24(SPIClass &uSPI, uint8_t _cepin, uint8_t _cspin);
 
   /**
    * Begin operation of the chip
